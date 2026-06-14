@@ -1,4 +1,4 @@
-/* Portal Estudiante - Optimized CSS */
+/* src/app/pages/portal-estudiante/portal-estudiante.component.css */
 
 :host {
   display: block;
@@ -6,14 +6,16 @@
   min-height: 100vh;
 }
 
+/* Contenedor Base - Tema Oscuro Premium */
 .portal-container {
   display: flex;
   justify-content: center;
   min-height: 100vh;
   width: 100%;
   padding: 24px;
-  background-color: var(--primary-dark);
-  color: var(--text-primary);
+  background-color: #0f172a !important; /* Slate Oscuro de alta fidelidad */
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
@@ -29,42 +31,54 @@
   overflow-y: auto;
 }
 
-/* Sidebar */
+
+/*REPLICAR EN EL OTRO PORTAL
+/* Barra Lateral Limpia */
 .sidebar {
   width: 345px;
-  background-color: var(--surface);
-  color: var(--text-primary);
+  background-color: #1e293b !important; /* Contraste perfecto de bloques */
+  color: #ffffff !important;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid var(--border-light);
+  border-right: 1px solid #334155;
+  
+  
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border-light);
+  justify-content: center; /* Centramos el logo horizontalmente */
+  padding: 0px 0;         /* Damos aire arriba y abajo */
+  border-bottom: 1px solid #334155; /* Separador sutil */
   margin-bottom: 20px;
+}
+
+
+.logo-placeholder {
+  font-size: 24px;
+  
 }
 
 .brand-section h2 {
   font-size: 20px;
   margin: 0;
   font-weight: 700;
-  color: var(--accent-primary);
+  color: #38bdf8 !important; /* Azul cian de alta claridad */
   letter-spacing: 0.5px;
+  
 }
 
 .user-info-side {
   padding: 20px 24px;
-  background: var(--primary-dark);
+  background: #111827 !important;
   margin: 15px;
   border-radius: 10px;
-  border: 1px solid var(--border-light);
+  border: 1px solid #334155;
+  /* --- Código para centrar --- */
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; /* Apila el icono y el texto verticalmente */
+  align-items: center;    /* Centra horizontalmente */
   text-align: center;
 }
 
@@ -72,17 +86,17 @@
   font-weight: 700;
   margin: 0;
   font-size: 15px;
-  color: var(--text-primary);
+  color: #ffffff !important;
 }
 
 .user-role {
-  margin: 4px 0 0;
+  margin: 4px 0 0 0;
   font-size: 12px;
-  color: var(--accent-primary);
+  color: #38bdf8 !important;
   font-weight: 600;
 }
 
-/* Menu Navigation */
+/* Navegación por Bloques Sólidos */
 .menu-nav {
   display: flex;
   flex-direction: column;
@@ -92,7 +106,7 @@
 
 .menu-title {
   font-size: 11px;
-  color: var(--text-muted);
+  color: #94a3b8 !important;
   padding: 12px 10px 6px 10px;
   font-weight: 700;
   text-transform: uppercase;
@@ -102,7 +116,7 @@
 .menu-nav button {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: #cbd5e1 !important;
   text-align: left;
   padding: 12px 14px;
   font-size: 14px;
@@ -114,44 +128,50 @@
 }
 
 .menu-nav button:hover {
-  background-color: var(--border-light);
-  color: var(--text-primary);
+  background-color: #334155 !important;
+  color: #ffffff !important;
 }
 
 .menu-nav button.active {
-  background-color: var(--accent-primary);
-  color: var(--primary-dark);
+  background-color: #0284c7 !important; /* Azul Vercel/Stripe */
+  color: #ffffff !important;
   font-weight: 600;
 }
 
-/* Content Header */
+/* Espacio de Trabajo */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
 .content-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid #334155;
   padding-bottom: 20px;
 }
 
 .content-header h1 {
-  margin: 0;
-  color: var(--text-primary);
+  margin: 1500;
+  color: #ffffff !important;
   font-size: 30px;
   font-weight: 700;
 }
 
 .header-carne {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
-  color: var(--accent-primary);
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #38bdf8 !important;
   padding: 6px 16px;
   border-radius: 8px;
   font-weight: 600;
   font-size: 14px;
 }
 
-/* Dashboard Grid */
+/* TARJETAS PRINCIPALES (CORRECCIÓN DE TEXTO DE LA CAPTURA) */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -159,8 +179,8 @@
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
+  background: #1e293b !important; /* Fondo de tarjeta oscuro uniforme */
+  border: 1px solid #334155;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -171,7 +191,7 @@
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent-primary);
+  border-color: #38bdf8; /* Borde cian al pasar el mouse */
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
@@ -189,49 +209,51 @@
   margin: 0 0 10px 0;
   font-size: 20px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff !important; /* Título en blanco puro */
 }
 
+/* ¡CORRECCIÓN AQUÍ! Texto que marcaste ahora es completamente legible */
 .card p {
   margin: 0;
   font-size: 14px;
-  color: var(--text-secondary);
+  color: #f1f5f9 !important; /* Blanco plateado de alta visibilidad */
   line-height: 1.6;
 }
 
 .card-footer {
-  background: var(--primary-dark);
+  background: #111827;
   padding: 14px 24px;
   font-size: 13px;
   font-weight: 600;
   text-align: right;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border-top: 1px solid var(--border-light);
-  color: var(--accent-primary);
+  border-top: 1px solid #334155;
+  color: #38bdf8 !important; /* Enlace llamativo */
 }
 
-/* Profile Card */
-.profile-card-detail,
-.form-card,
-.table-card {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
+/* Modificaciones de colores de hover sutiles en los bordes */
+.card-orange:hover { border-color: #f59e0b; }
+.card-blue:hover { border-color: #3b82f6; }
+.card-teal:hover { border-color: #06b6d4; }
+
+/* Contenedores Internos para Formularios y Tablas */
+.profile-card-detail, .form-card, .table-card {
+  background: #1e293b !important;
+  border: 1px solid #334155;
   padding: 35px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  color: var(--text-primary);
+  color: #ffffff !important;
 }
 
-.profile-card-detail h2,
-.form-card h2,
-.table-card h2 {
-  color: var(--text-primary);
+.profile-card-detail h2, .form-card h2, .table-card h2 {
+  color: #ffffff !important;
   font-weight: 700;
   margin-top: 0;
 }
 
-/* Profile */
+/* Perfil */
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -243,20 +265,18 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: var(--primary-dark);
+  background: #0f172a;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--accent-primary);
+  border: 2px solid #38bdf8;
 }
 
-.user-placeholder {
-  font-size: 45px;
-}
+.user-placeholder { font-size: 45px; }
 
 .badge-carrera {
   background: rgba(56, 189, 248, 0.1);
-  color: var(--accent-primary);
+  color: #38bdf8 !important;
   padding: 6px 14px;
   border-radius: 6px;
   font-size: 13px;
@@ -272,23 +292,23 @@
 }
 
 .info-item {
-  background: var(--primary-dark);
+  background: #0f172a;
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid var(--border-light);
-  color: var(--text-primary);
+  border: 1px solid #334155;
+  color: #ffffff !important;
 }
 
 .info-item strong {
   display: block;
   margin-bottom: 6px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* Tables */
+/* Tablas Minimalistas de Alto Contraste */
 .academic-table {
   width: 100%;
   border-collapse: collapse;
@@ -296,55 +316,78 @@
 }
 
 .academic-table th {
-  background-color: var(--primary-dark);
-  color: var(--text-muted);
+  background-color: #0f172a !important;
+  color: #94a3b8 !important;
   font-weight: 600;
   padding: 14px;
   text-align: left;
   font-size: 13px;
-  border-bottom: 2px solid var(--border-light);
+  border-bottom: 2px solid #334155;
 }
 
 .academic-table td {
   padding: 14px;
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-secondary);
+  border-bottom: 1px solid #334155;
+  color: #f1f5f9 !important; /* Texto de celdas claro */
 }
 
-.final-score {
-  font-weight: 700;
-  color: var(--accent-red);
-}
+.final-score { font-weight: 700; color: #ef4444 !important; }
+.final-score.aprobado { color: #34d399 !important; }
 
-.final-score.aprobado {
-  color: #34d399;
-}
-
-/* Status Badge */
+/* Badges de Estado */
 .status-badge {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
 }
+.status-badge.cursando { background: #78350f !important; color: #f59e0b !important; }
+.status-badge.aprobado { background: #064e3b !important; color: #34d399 !important; }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .portal-container {
-    flex-direction: column;
-  }
-  
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid var(--border-light);
-  }
-  
-  .profile-info-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
+/* Formularios */
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #cbd5e1 !important;
 }
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #38bdf8;
+}
+
+.btn-submit-asignar {
+  background: #0284c7 !important;
+  color: white !important;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.btn-submit-asignar:hover {
+  background: #0369a1 !important;
+}
+
+.alert-banner {
+  padding: 14px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+.alert-banner.success { background: rgba(52, 211, 153, 0.1); color: #34d399; border: 1px solid rgba(52, 211, 153, 0.2); }
