@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { RegistroEstudianteComponent } from '../../components/registro-estudiante/registro-estudiante.component';
 import { UBICACIONES } from '../../data/ubicaciones';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -460,14 +459,14 @@ export const FACULTADES: Facultad[] = crearFacultadesConCodigo(FACULTADES_RAW);
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, RegistroEstudianteComponent],
+  imports: [CommonModule, RouterLink],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   tituloSistema = 'UniTrack Pro';
   cicloLectivo = 2026;
-  vistaActual: 'inicio' | 'admisiones' | 'facultades' | 'ubicaciones' | 'registro' = 'inicio';
+  vistaActual: 'inicio' | 'admisiones' | 'facultades' | 'ubicaciones' = 'inicio';
   vistaFacultades: 'lista' | 'carreras' | 'pensum' = 'lista';
   facultades = FACULTADES;
   facultadSeleccionada?: Facultad;
@@ -482,7 +481,7 @@ export class HomeComponent {
     return this.ubicaciones.find((ubicacion) => ubicacion.departamento === this.departamentoSeleccionado);
   }
 
-  setVista(vista: 'inicio' | 'admisiones' | 'facultades' | 'ubicaciones' | 'registro') {
+  setVista(vista: 'inicio' | 'admisiones' | 'facultades' | 'ubicaciones') {
     this.vistaActual = vista;
     if (vista === 'facultades') {
       this.vistaFacultades = 'lista';
