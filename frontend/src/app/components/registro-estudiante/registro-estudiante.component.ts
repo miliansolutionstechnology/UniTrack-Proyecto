@@ -17,7 +17,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./registro-estudiante.component.css']
 })
 export class RegistroEstudianteComponent {
-  form = this.fb.group({
+  private fb = inject(FormBuilder);
+  private router = inject(Router);
+
+  form = this.fb.nonNullable.group({
     nombres: ['', [Validators.required, Validators.minLength(2)]],
     apellidos: ['', [Validators.required, Validators.minLength(2)]],
     correo: ['', [Validators.required, Validators.email]],
@@ -43,12 +46,17 @@ export class RegistroEstudianteComponent {
   private toast = inject(ToastService);
   private auth = inject(AuthService);
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor() {
     // watch facultad changes
     this.form.get('facultad')?.valueChanges.subscribe((val) => this.onFacultadChange(val));
   }
 
-  onFacultadChange(tagOrName: string) {
+  onFacultadChange(tagOrName: string | null) {
+    if (!tagOrName) {
+      this.carrerasOpcionales = [];
+      return;
+    }
+
     const fac = this.facultades.find(f => f.nombre === tagOrName || f.tag === tagOrName);
     this.carrerasOpcionales = fac ? fac.carreras : [];
   }
@@ -59,17 +67,17 @@ export class RegistroEstudianteComponent {
       return;
     }
     this.loading = true;
-    const data = this.form.value;
+    const data = this.form.value as Record<string, string | null>;
 
     const profile = {
-      nombres: data.nombres,
-      apellidos: data.apellidos,
-      correo: data.correo,
-      telefono: data.telefono,
-      facultad: data.facultad,
-      carrera: data.carrera,
-      sede: data.sede,
-      jornada: data.jornada,
+      nombres: data.nombres ?? '',
+      apellidos: data.apellidos ?? '',
+      correo: data.correo ?? '',
+      telefono: data.telefono ?? '',
+      facultad: data.facultad ?? '',
+      carrera: data.carrera ?? '',
+      sede: data.sede ?? '',
+      jornada: data.jornada ?? '',
       created_at: new Date().toISOString()
     };
 
