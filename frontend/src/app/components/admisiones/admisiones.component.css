@@ -1,0 +1,221 @@
+.admisiones-shell {
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 24px 60px rgba(17,24,39,0.48);
+}
+
+.admisiones-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  color: #fca5a5;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.admisiones-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.5vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.admisiones-header p {
+  max-width: 44rem;
+  color: #cbd5e1;
+  margin: 1rem 0 0;
+}
+
+.cta-button {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 30px rgba(239,68,68,0.28);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.step-card {
+  background: #0f172a;
+  border: 1px solid rgba(148,163,184,0.12);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+
+.step-card:hover,
+.step-card.active {
+  transform: translateY(-4px);
+  border-color: rgba(239,68,68,0.45);
+  background: rgba(31,41,55,0.9);
+}
+
+.step-badge {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(239,68,68,0.14);
+  color: #ef4444;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.step-body h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #f8fafc;
+}
+
+.step-body p {
+  margin: 0.75rem 0 0;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.admission-details-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.detail-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(148,163,184,0.14);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+}
+
+.detail-card h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+.detail-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.detail-card li {
+  color: #cbd5e1;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.detail-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  color: #ef4444;
+}
+
+.admission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.info-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.3rem;
+  border-radius: 999px;
+  background: rgba(239,68,68,0.16);
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid rgba(239,68,68,0.3);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.info-badge:hover {
+  transform: translateY(-2px);
+  background: rgba(239,68,68,0.26);
+}
+
+.contact-panel {
+  background: rgba(15,23,42,0.95);
+  border: 1px solid rgba(148,163,184,0.15);
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+.contact-panel h3 {
+  margin: 0 0 1rem;
+  color: #ffffff;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.contact-grid div {
+  padding: 1rem 1.15rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 1rem;
+}
+
+.contact-grid span {
+  display: block;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-bottom: 0.5rem;
+}
+
+.contact-grid strong {
+  display: block;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.contact-note {
+  margin-top: 1.5rem;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+@media (max-width: 900px) {
+  .admisiones-header { flex-direction: column; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .admission-details-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+}

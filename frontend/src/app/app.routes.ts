@@ -27,6 +27,16 @@ export const routes: Routes = [
     title: 'UniTrack Pro - Panel Catedrático'
   },
   {
+    path: 'admisiones',
+    loadComponent: () => import('./components/admisiones/admisiones.component').then(m => m.AdmisionesComponent),
+    title: 'UniTrack Pro - Admisiones'
+  },
+  {
+    path: 'ubicaciones',
+    loadComponent: () => import('./components/ubicaciones/ubicaciones.component').then(m => m.UbicacionesComponent),
+    title: 'UniTrack Pro - Ubicaciones'
+  },
+  {
     path: 'registro',
     loadComponent: () => import('./components/registro-estudiante/registro-estudiante.component').then(m => m.RegistroEstudianteComponent),
     title: 'UniTrack Pro - Registro Estudiante'

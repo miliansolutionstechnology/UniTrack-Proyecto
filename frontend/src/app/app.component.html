@@ -1,11 +1,9 @@
-<header class="navbar">
-  <div class="logo"></div>
-  <nav class="nav-actions">
-    <a routerLink="/" class="nav-link">Inicio</a>
-    <a *ngIf="!(authService.isAuthenticated$ | async)" routerLink="/registro" class="nav-link">Registro</a>
-    <button *ngIf="authService.isAuthenticated$ | async" class="logout-button" (click)="logout()">Cerrar Sesión</button>
-  </nav>
-</header>
-
 <router-outlet></router-outlet>
 <app-toast-container></app-toast-container>
+<a href="https://wa.me/1234567890?text=Hola%20UniTrack,%20necesito%20ayuda" target="_blank" rel="noopener noreferrer" class="whatsapp-widget">
+  <span>Ayuda</span>
+  <strong>WhatsApp</strong>
+</a>
+
+<!-- Logout button (visible when authenticated) -->
+<button *ngIf="authService.isAuthenticated()" class="logout-btn" (click)="logout()">Cerrar sesión</button>

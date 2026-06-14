@@ -70,14 +70,14 @@ export class RegistroEstudianteComponent {
     const data = this.form.value as Record<string, string | null>;
 
     const profile = {
-      nombres: data.nombres ?? '',
-      apellidos: data.apellidos ?? '',
-      correo: data.correo ?? '',
-      telefono: data.telefono ?? '',
-      facultad: data.facultad ?? '',
-      carrera: data.carrera ?? '',
-      sede: data.sede ?? '',
-      jornada: data.jornada ?? '',
+      nombres: data['nombres'] ?? '',
+      apellidos: data['apellidos'] ?? '',
+      correo: data['correo'] ?? '',
+      telefono: data['telefono'] ?? '',
+      facultad: data['facultad'] ?? '',
+      carrera: data['carrera'] ?? '',
+      sede: data['sede'] ?? '',
+      jornada: data['jornada'] ?? '',
       created_at: new Date().toISOString()
     };
 
@@ -85,7 +85,7 @@ export class RegistroEstudianteComponent {
     fetch('/api/register-student', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ profile, password: data.password })
+      body: JSON.stringify({ profile, password: data['password'] })
     })
       .then(async (r) => {
         const json = await r.json();

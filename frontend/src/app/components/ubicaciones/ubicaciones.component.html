@@ -1,0 +1,22 @@
+<section class="ubicaciones-shell">
+  <header class="ubicaciones-header">
+    <div>
+      <span class="eyebrow">Ubicaciones</span>
+      <h2>Encuentra tu campus ideal</h2>
+      <p>Descubre la infraestructura premium y los espacios diseñados para tu aprendizaje y bienestar.</p>
+    </div>
+  </header>
+
+  <div class="locations-grid">
+    <article *ngFor="let card of cards" class="location-card">
+      <div class="location-top">
+        <h3>{{ card.campus }}</h3>
+        <p>{{ card.address }}</p>
+      </div>
+      <div class="location-highlight">{{ card.highlight }}</div>
+      <ul>
+        <li *ngFor="let feature of card.features">{{ feature }}</li>
+      </ul>
+    </article>
+  </div>
+</section>

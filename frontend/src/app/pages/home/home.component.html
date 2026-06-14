@@ -9,6 +9,7 @@
       <button type="button" class="nav-pill" [class.active]="vistaActual === 'admisiones'" (click)="setVista('admisiones')">Admisiones</button>
       <button type="button" class="nav-pill" [class.active]="vistaActual === 'facultades'" (click)="setVista('facultades')">Facultades</button>
       <button type="button" class="nav-pill" [class.active]="vistaActual === 'ubicaciones'" (click)="setVista('ubicaciones')">Ubicaciones</button>
+      <button type="button" class="nav-pill" [class.active]="vistaActual === 'registro'" (click)="setVista('registro')">Registro</button>
     </div>
   </div>
 
@@ -178,6 +179,10 @@
           </article>
         </div>
       </div>
+    </section>
+
+    <section *ngSwitchCase="'registro'" class="registro-panel">
+      <app-registro-estudiante></app-registro-estudiante>
     </section>
 
     <section *ngSwitchCase="'ubicaciones'" class="ubicaciones-panel">

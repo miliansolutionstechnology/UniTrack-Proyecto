@@ -1,0 +1,67 @@
+<section class="admisiones-shell">
+  <div class="admisiones-header">
+    <div>
+      <span class="eyebrow">Admisiones</span>
+      <h2>Admisiones en UniTrack Pro</h2>
+      <p>Un flujo inspirado en los mejores procesos universitarios, con información clara, pasos de ingreso y soporte de contacto directo.</p>
+    </div>
+    <button routerLink="/registro" class="cta-button">Solicitar Información</button>
+  </div>
+
+  <div class="steps-grid">
+    <article *ngFor="let step of steps; index as i" class="step-card" [class.active]="step.active" (click)="selectStep(i)">
+      <div class="step-badge">{{ step.number }}</div>
+      <div class="step-body">
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="admission-details-grid">
+    <article class="detail-card">
+      <h3>Tipo de solicitud</h3>
+      <ul>
+        <li>Primer ingreso</li>
+        <li>Reingreso</li>
+        <li>Traslado</li>
+        <li>Cambio de programa</li>
+      </ul>
+    </article>
+
+    <article class="detail-card">
+      <h3>Servicios de apoyo</h3>
+      <ul>
+        <li>Asesoría de carrera personalizada</li>
+        <li>Consulta de examen de ubicación</li>
+        <li>Visitas guiadas a campus</li>
+        <li>Información de becas y financiamiento</li>
+      </ul>
+    </article>
+  </div>
+
+  <div class="admission-actions">
+    <a href="#contacto" class="info-badge">Contáctanos</a>
+    <a href="#contacto" class="info-badge">WhatsApp</a>
+    <a routerLink="/registro" class="info-badge">Regístrate</a>
+  </div>
+
+  <section class="contact-panel" id="contacto">
+    <h3>Contáctanos</h3>
+    <div class="contact-grid">
+      <div>
+        <span>PBX</span>
+        <strong>+502 2423-8000</strong>
+      </div>
+      <div>
+        <span>Email</span>
+        <strong>info@unitrack.edu.gt</strong>
+      </div>
+      <div>
+        <span>Dirección</span>
+        <strong>Av. Principal 123, Ciudad Universitaria</strong>
+      </div>
+    </div>
+    <p class="contact-note">Escríbenos por WhatsApp para recibir asesoría sobre admisiones, inscripción y apoyo de carrera.</p>
+  </section>
+</section>

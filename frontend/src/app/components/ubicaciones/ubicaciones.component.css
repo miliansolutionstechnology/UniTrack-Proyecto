@@ -1,0 +1,97 @@
+.ubicaciones-shell {
+  background: linear-gradient(180deg, #0b1121 0%, #111827 100%);
+  padding: 2rem;
+  border-radius: 24px;
+  color: #e2e8f0;
+  box-shadow: 0 24px 64px rgba(15,23,42,0.5);
+}
+
+.ubicaciones-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ubicaciones-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 2.2vw, 2.4rem);
+}
+
+.ubicaciones-header p {
+  margin: 1rem 0 0;
+  color: #94a3b8;
+  max-width: 46rem;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.location-card {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid rgba(148,163,184,0.14);
+  border-radius: 1.5rem;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(239,68,68,0.4);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.25);
+}
+
+.location-top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.location-top p {
+  margin: 0.6rem 0 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.location-highlight {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.location-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.location-card li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 999px;
+  color: #d1d5db;
+  font-size: 0.92rem;
+}
+
+.location-card li::before {
+  content: '•';
+  color: #ef4444;
+  font-size: 1.1rem;
+  line-height: 0;
+}
+
+@media (max-width: 900px) {
+  .ubicaciones-header { flex-direction: column; }
+  .locations-grid { grid-template-columns: 1fr; }
+}

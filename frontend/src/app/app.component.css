@@ -1,50 +1,72 @@
 /* --- LAYOUT GLOBAL --- */
 :host {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --primary: #003366;
-  --secondary: #008080;
-  --dark: #2c3e50;
-  --light: #f8f9fa;
-  --accent: #e74c3c;
+  --primary: #111827;
+  --secondary: #ef4444;
+  --accent: #f87171;
+  --surface: #0f172a;
+  --surface-strong: #111827;
+  --surface-light: #1f2937;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
 }
 
 body {
   margin: 0;
-  background-color: var(--light);
+  background-color: var(--surface);
+  color: var(--text);
 }
 
-/* --- NAVBAR SUPERIOR --- */
-.navbar {
-  background-color: var(--primary);
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
+.whatsapp-widget {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: inline-flex;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-.logo { font-weight: bold; font-size: 1.2rem; letter-spacing: 1px; }
-.logout-button {
-  flex: 0 0 auto;
-  min-width: 64px;
-  padding: 5px 10px;
+  gap: 0.75rem;
+  padding: 0.95rem 1.2rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.28);
-  background-color: rgba(255,255,255,0.18);
+  background: linear-gradient(135deg, #10b981, #22c55e);
   color: white;
-  font-size: 0.82rem;
+  text-decoration: none;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  box-shadow: 0 22px 45px rgba(16,185,129,0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 55px rgba(16,185,129,0.32);
+}
+
+/* Logout button */
+.logout-btn {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  z-index: 1100;
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 12px 30px rgba(239,68,68,0.18);
 }
-.logout-button:hover {
-  background-color: rgba(255,255,255,0.28);
-  transform: translateY(-1px);
+.logout-btn:hover { transform: translateY(-2px); }
+
+.whatsapp-widget span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
-nav { display: flex; gap: 20px; }
-.nav-link { color: #bdc3c7; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
-.nav-link:hover, .nav-link.active { color: white; }
+
+.whatsapp-widget strong {
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
 
 /* --- CONTENEDOR DOS COLUMNAS (SPA) --- */
 .dashboard-container {

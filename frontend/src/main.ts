@@ -1,5 +1,6 @@
 // src/main.ts
 import 'zone.js'; // Mantiene la corrección del error de ciclo NG0908
+import './styles.css'; // Global styles with CSS variables
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component'; // <- CORREGIDO: 'AppComponent' con A mayúscula
 import { appConfig } from './app/app.config';
