@@ -165,3 +165,6 @@ button:hover { background-color: #002244; }
   .dashboard-container { flex-direction: column; height: auto; }
   section { height: auto; max-height: 500px; }
 }
+
+/* Ensure logout button is visible and styled */
+.logout-button { position: fixed; top: 14px; right: 18px; z-index: 9999; }

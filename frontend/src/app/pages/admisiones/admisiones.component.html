@@ -1,0 +1,243 @@
+<div class="admisiones-container">
+  <!-- Header -->
+  <header class="admisiones-header">
+    <div class="admisiones-header-top">
+      <a routerLink="/" class="back-button">Regresar</a>
+      <div class="admisiones-branding">
+        <div class="admisiones-logo">
+          <span class="logo-mark">U</span>
+          <span class="logo-text">UniTrack Pro</span>
+        </div>
+        <p class="logo-tag">Admisiones · Plataforma Académica</p>
+      </div>
+    </div>
+
+    <div class="header-content">
+      <h1 class="admisiones-title">Bienvenido al proceso de Admisión</h1>
+      <p class="admisiones-subtitle">Descubre los pasos, requisitos y apoyo que necesitas para postular con éxito a UniTrack.</p>
+      <div class="header-pill-group">
+        <span class="header-pill">Rápido</span>
+        <span class="header-pill">Seguro</span>
+        <span class="header-pill">100% digital</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Proceso de Admisión - Tarjetas tipo Galileo -->
+  <section class="admision-process" aria-labelledby="admision-process-title">
+    <div class="section-title-wrapper">
+      <h2 id="admision-process-title" class="section-title">Proceso de Admisión</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="admisiones-cards-grid" role="list">
+      <a routerLink="/admisiones/requisitos" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-clipboard-list" aria-hidden="true"></i></div>
+        <h3 class="card-title">Requisitos de Admisión</h3>
+        <p class="card-desc">Documentos y criterios necesarios para iniciar tu postulación.</p>
+      </a>
+
+      <a routerLink="/admisiones/examen" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-file-alt" aria-hidden="true"></i></div>
+        <h3 class="card-title">Examen de Ubicación</h3>
+        <p class="card-desc">Evalúa tu nivel para asignarte al curso o materias adecuadas.</p>
+      </a>
+
+      <a routerLink="/admisiones/proceso-inscripcion" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-pen" aria-hidden="true"></i></div>
+        <h3 class="card-title">Proceso de Inscripción</h3>
+        <p class="card-desc">Pasos para formalizar tu inscripción y matrícula en línea.</p>
+      </a>
+
+      <a routerLink="/admisiones/primer-ingreso" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+        <h3 class="card-title">Primer Ingreso</h3>
+        <p class="card-desc">Información para estudiantes de primer ingreso y orientación inicial.</p>
+      </a>
+
+      <a routerLink="/admisiones/reingreso" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-undo" aria-hidden="true"></i></div>
+        <h3 class="card-title">Re-Ingreso</h3>
+        <p class="card-desc">Trámites y condiciones para estudiantes que desean reingresar.</p>
+      </a>
+
+      <a routerLink="/admisiones/traslado" class="admisiones-card" role="listitem">
+        <div class="card-icon" aria-hidden="true"><i class="fas fa-exchange-alt" aria-hidden="true"></i></div>
+        <h3 class="card-title">Traslado</h3>
+        <p class="card-desc">Procedimiento para solicitar traslado interno o externo.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Requisitos de Admisión -->
+  <section class="requirements-section">
+    <div class="section-title-wrapper">
+      <h2 class="section-title">Requisitos de Admisión</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="requirements-content">
+      <div class="requirement-category">
+        <h3 class="category-title">Requisitos Académicos</h3>
+        <ul class="requirement-list">
+          <li>Diploma de bachillerato o equivalente</li>
+          <li>Notas mínimas de bachillerato</li>
+          <li>Aprobación del examen de ubicación</li>
+          <li>Referencias académicas (opcional)</li>
+        </ul>
+      </div>
+
+      <div class="requirement-category">
+        <h3 class="category-title">Documentos Requeridos</h3>
+        <ul class="requirement-list">
+          <li>Cédula de identidad o pasaporte</li>
+          <li>Diploma de bachillerato (original o copia notariada)</li>
+          <li>Historial académico sellado</li>
+          <li>Comprobante de domicilio actual</li>
+          <li>Fotografía tamaño carné (reciente)</li>
+        </ul>
+      </div>
+
+      <div class="requirement-category">
+        <h3 class="category-title">Información Importante</h3>
+        <ul class="requirement-list">
+          <li>Mayores de 18 años (flexible para excepciones)</li>
+          <li>Residencia en el país o visa válida</li>
+          <li>Correo electrónico activo</li>
+          <li>Disponibilidad de tiempo para estudios</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Información de Contacto -->
+  <section class="contact-section">
+    <div class="section-title-wrapper">
+      <h2 class="section-title">¿Tienes Preguntas?</h2>
+      <div class="title-underline"></div>
+    </div>
+
+    <div class="contact-content">
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombre Completo *</label>
+          <input 
+            type="text" 
+            id="nombre" 
+            class="form-input"
+            formControlName="nombre"
+            placeholder="Tu nombre"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo Electrónico *</label>
+          <input 
+            type="email" 
+            id="email" 
+            class="form-input"
+            formControlName="email"
+            placeholder="tu.email@example.com"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input 
+            type="tel" 
+            id="telefono" 
+            class="form-input"
+            formControlName="telefono"
+            placeholder="+502 XXXX-XXXX">
+        </div>
+
+        <div class="form-group">
+          <label for="carrera" class="form-label">Carrera de Interés</label>
+          <select id="carrera" class="form-input" formControlName="carrera">
+            <option value="">-- Selecciona una carrera --</option>
+            <option value="ingenieria">Ingeniería en Sistemas</option>
+            <option value="administracion">Administración de Empresas</option>
+            <option value="psicologia">Psicología</option>
+            <option value="marketing">Marketing Digital</option>
+            <option value="contabilidad">Contabilidad</option>
+            <option value="otra">Otra</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo-solicitud" class="form-label">Tipo de Solicitud *</label>
+          <select id="tipo-solicitud" class="form-input" formControlName="tipoSolicitud" required>
+            <option value="">-- Selecciona una opción --</option>
+            <option value="examen">Consulta de Examen de Ubicación</option>
+            <option value="asesoria">Asesoría sobre Carrera</option>
+            <option value="informacion">Información sobre Proceso de Admisión</option>
+            <option value="visita">Solicitar Visita Guiada</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje" class="form-label">Mensaje</label>
+          <textarea 
+            id="mensaje" 
+            class="form-textarea"
+            formControlName="mensaje"
+            placeholder="Cuéntanos cómo podemos ayudarte..."
+            rows="4"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="!contactForm.valid">
+          Enviar Solicitud
+        </button>
+      </form>
+
+      <div class="contact-info">
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-details">
+            <h4>Teléfono</h4>
+            <p><a href="tel:+50224238000">+502 2423-8000</a></p>
+            <p class="info-subtitle">Ext: 7121, 7123, 7124</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-details">
+            <h4>Correo Electrónico</h4>
+            <p><a href="mailto:info@galileo.edu">info@galileo.edu</a></p>
+            <p class="info-subtitle">Respuesta en 24 horas</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-details">
+            <h4>Ubicación</h4>
+            <p>7ª Calle y 5ª Avenida, Zona 10</p>
+            <p class="info-subtitle">Ciudad de Guatemala</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div class="info-details">
+            <h4>Horario de Atención</h4>
+            <p>Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+            <p class="info-subtitle">Sábados: 8:00 AM - 1:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Secundario -->
+  <section class="cta-section">
+    <h2>¿Listo para comenzar tu viaje académico?</h2>
+    <p>Inicia tu solicitud hoy mismo y únete a nuestra comunidad de estudiantes</p>
+    <div class="cta-buttons">
+      <button class="btn-primary" (click)="scrollToForm()">Solicitar Admisión</button>
+      <a class="back-button" routerLink="/">Regresar</a>
+    </div>
+  </section>
+</div>

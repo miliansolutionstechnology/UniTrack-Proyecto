@@ -28,8 +28,38 @@ export const routes: Routes = [
   },
   {
     path: 'admisiones',
-    loadComponent: () => import('./components/admisiones/admisiones.component').then(m => m.AdmisionesComponent),
+    loadComponent: () => import('./pages/admisiones/admisiones.component').then(m => m.AdmisionesComponent),
     title: 'UniTrack Pro - Admisiones'
+  },
+  {
+    path: 'admisiones/requisitos',
+    loadComponent: () => import('./pages/admisiones/requisitos.component').then(m => m.RequisitosComponent),
+    title: 'UniTrack Pro - Requisitos de Admisión'
+  },
+  {
+    path: 'admisiones/examen',
+    loadComponent: () => import('./pages/admisiones/examen.component').then(m => m.ExamenComponent),
+    title: 'UniTrack Pro - Examen de Ubicación'
+  },
+  {
+    path: 'admisiones/proceso-inscripcion',
+    loadComponent: () => import('./pages/admisiones/proceso-inscripcion.component').then(m => m.ProcesoInscripcionComponent),
+    title: 'UniTrack Pro - Proceso de Inscripción'
+  },
+  {
+    path: 'admisiones/primer-ingreso',
+    loadComponent: () => import('./pages/admisiones/primer-ingreso.component').then(m => m.PrimerIngresoComponent),
+    title: 'UniTrack Pro - Primer Ingreso'
+  },
+  {
+    path: 'admisiones/reingreso',
+    loadComponent: () => import('./pages/admisiones/reingreso.component').then(m => m.ReingresoComponent),
+    title: 'UniTrack Pro - Re-Ingreso'
+  },
+  {
+    path: 'admisiones/traslado',
+    loadComponent: () => import('./pages/admisiones/traslado.component').then(m => m.TrasladoComponent),
+    title: 'UniTrack Pro - Traslado'
   },
   {
     path: 'ubicaciones',
