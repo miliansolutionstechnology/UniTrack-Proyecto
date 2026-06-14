@@ -1,0 +1,79 @@
+<div class="registro-panel">
+  <h2>Registro e Inscripción</h2>
+  <div *ngIf="mensaje" class="toast">{{ mensaje }}</div>
+  <form [formGroup]="form" (ngSubmit)="onRegistrar()" class="registro-form">
+    <div class="grid-2">
+      <label>
+        Nombres
+        <input formControlName="nombres" />
+      </label>
+      <div class="error" *ngIf="form.get('nombres')?.touched && form.get('nombres')?.invalid">El nombre es requerido.</div>
+      <label>
+        Apellidos
+        <input formControlName="apellidos" />
+      </label>
+      <div class="error" *ngIf="form.get('apellidos')?.touched && form.get('apellidos')?.invalid">Los apellidos son requeridos.</div>
+    </div>
+
+    <div class="grid-2">
+      <label>
+        Correo
+        <input formControlName="correo" type="email" />
+      </label>
+      <div class="error" *ngIf="form.get('correo')?.touched && form.get('correo')?.invalid">Introduce un correo válido.</div>
+      <label>
+        Teléfono
+        <input formControlName="telefono" />
+      </label>
+    </div>
+
+    <div class="grid-4">
+      <label>
+        Facultad
+        <select formControlName="facultad">
+          <option value="">Selecciona Facultad</option>
+          <option *ngFor="let f of facultades" [value]="f.nombre">{{ f.nombre }}</option>
+        </select>
+      </label>
+      <div class="error" *ngIf="form.get('facultad')?.touched && form.get('facultad')?.invalid">Selecciona una facultad.</div>
+
+      <label>
+        Carrera
+        <select formControlName="carrera">
+          <option value="">Selecciona Carrera</option>
+          <option *ngFor="let c of carrerasOpcionales" [value]="c.nombre">{{ c.nombre }}</option>
+        </select>
+      </label>
+      <div class="error" *ngIf="form.get('carrera')?.touched && form.get('carrera')?.invalid">Selecciona una carrera.</div>
+
+      <label>
+        Sede / Campus
+        <select formControlName="sede">
+          <option value="">Selecciona Sede</option>
+          <option *ngFor="let s of ubicaciones" [value]="s.nombreSede">{{ s.nombreSede }} — {{ s.departamento }}</option>
+        </select>
+      </label>
+
+      <label>
+        Jornada
+        <select formControlName="jornada">
+          <option value="">Selecciona Jornada</option>
+          <option *ngFor="let j of jornadas" [value]="j">{{ j }}</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="grid-2">
+      <label>
+        Contraseña
+        <input formControlName="password" type="password" />
+      </label>
+      <div class="error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">La contraseña debe tener mínimo 6 caracteres.</div>
+      <div></div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn primary" type="submit" [disabled]="loading">Registrar e Inscribirse</button>
+    </div>
+  </form>
+</div>

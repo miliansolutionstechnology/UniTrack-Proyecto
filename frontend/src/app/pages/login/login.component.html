@@ -1,0 +1,58 @@
+<section class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <div class="logo-glow"></div>
+      <div>
+        <p class="eyebrow">Bienvenido(a)</p>
+        <h1>Iniciar sesión</h1>
+        <p class="subtitle">Accede a tu portal como estudiante o catedrático.</p>
+      </div>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="input-group" [class.invalid]="carne?.touched && carne?.invalid">
+        <div class="input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <div class="input-field">
+          <label for="carne">Carné</label>
+          <input id="carne" formControlName="carne" type="text" placeholder="Ingresa tu carné" />
+        </div>
+      </div>
+      <div class="field-error" *ngIf="carne?.touched && carne?.invalid">
+        El carné es obligatorio.
+      </div>
+
+      <div class="input-group" [class.invalid]="password?.touched && password?.invalid">
+        <div class="input-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <div class="input-field">
+          <label for="password">Contraseña</label>
+          <input id="password" formControlName="password" type="password" placeholder="Contraseña" />
+        </div>
+      </div>
+      <div class="field-error" *ngIf="password?.touched && password?.invalid">
+        La contraseña es obligatoria y debe tener al menos 6 caracteres.
+      </div>
+
+      <button class="login-button" type="submit" [disabled]="loading">
+        {{ loading ? 'Validando...' : 'Ingresar' }}
+      </button>
+
+      <div class="helper-text">
+        Ingresa con tu carné universitario y contraseña.
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</section>

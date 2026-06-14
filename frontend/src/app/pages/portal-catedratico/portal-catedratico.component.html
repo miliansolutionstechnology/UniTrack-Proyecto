@@ -1,0 +1,143 @@
+﻿<div class="portal-container">
+  
+ <aside class="sidebar">
+    <div class="brand-section">
+      <div class="logo-placeholder"></div>
+     <img src="logo.png.png" alt="UniTrack Pro" style="height: 150px; display: block;">
+    </div>
+
+    <div class="user-info-side">
+      <img src="https://img.icons8.com/?size=160&id=TFa5dmzOAaDh&format=png">
+
+      <p class="user-name">Ing. Carlos Fuentes</p>
+      <p class="user-role">Catedrático Titular</p>
+    </div>
+
+    <nav class="menu-nav">
+      <span class="menu-title">Operaciones</span>
+      <button class="active">📊 Acta de Calificaciones</button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    
+    <header class="content-header">
+      <h1>Panel de Control Académico (Catedrático)</h1>
+      <div class="header-carne">Ciclo Activo: 2026</div>
+    </header>
+
+    <div *ngIf="mensajeAlerta" [className]="'alert-banner ' + tipoAlerta">
+      {{ mensajeAlerta }}
+    </div>
+
+    <div class="search-card">
+      <h3>Buscar Alumno en Control Académico</h3>
+      <p class="card-subtitle">Ingresa el número de carné del estudiante para cargar su pensum y gestionar notas.</p>
+      
+      <div class="search-box-group">
+        <input type="number" [(ngModel)]="carneBusqueda" placeholder="Ej: 2026010" class="input-search">
+        <button class="btn-search" (click)="buscarEstudiante()">Consultar Registro</button>
+      </div>
+    </div>
+
+    <div class="management-layout" *ngIf="estudianteSeleccionado">
+      
+      <div class="form-card">
+        <h3>{{ editando ? 'Modificar Calificaciones' : 'Asignar Notas de Curso' }}</h3>
+        <p class="card-subtitle">Estudiante: <strong>{{ estudianteSeleccionado.nombreCompleto }}</strong></p>
+        
+        <div class="form-group">
+          <label>Seleccionar Curso:</label>
+          <select [(ngModel)]="notaForm.codigoCurso" [disabled]="editando" class="select-dark">
+            <option value="">-- Selecciona un curso del pensum --</option>
+            <option *ngFor="let c of cursosEstudiante" [value]="c.codigoCurso">
+              {{ c.codigoCurso }} - {{ c.nombreCurso }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-grid-scores">
+          <div class="form-group">
+            <label>Zona (40 pts):</label>
+            <input type="number" [(ngModel)]="notaForm.zona" min="0" max="40">
+          </div>
+          <div class="form-group">
+            <label>Parcial l (20 pts):</label>
+            <input type="number" [(ngModel)]="notaForm.parcial1" min="0" max="20">
+          </div>
+          <div class="form-group">
+            <label>Parcial ll (20 pts):</label>
+            <input type="number" [(ngModel)]="notaForm.parcial2" min="0" max="20">
+          </div>
+          <div class="form-group">
+            <label>Final (20 pts):</label>
+            <input type="number" [(ngModel)]="notaForm.examenFinal" min="0" max="20">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Examen de Recuperación (Opcional - 20 pts):</label>
+          <input type="number" [(ngModel)]="notaForm.recuperacion" min="0" max="20" placeholder="Solo si aplica">
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-submit-asignar" (click)="guardarCalificacion()">
+            {{ editando ? 'Actualizar Registro' : 'Procesar Nota' }}
+          </button>
+          <button class="btn-cancel" *ngIf="editando" (click)="cancelarEdicion()">
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+      <div class="table-card">
+        <h3>Acta Parcial del Estudiante</h3>
+        <p class="card-subtitle">Lista de materias inscritas. Puedes modificar o eliminar las puntuaciones de cada nodo.</p>
+
+        <div class="table-responsive">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Zona</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>Final</th>
+                <th>Recup.</th>
+                <th>Total</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of cursosEstudiante">
+                <td>
+                  <span class="curso-code">{{ curso.codigoCurso }}</span><br>
+                  <strong class="curso-name">{{ curso.nombreCurso }}</strong>
+                </td>
+                <td>{{ curso.zona }}</td>
+                <td>{{ curso.parcial1 }}</td>
+                <td>{{ curso.parcial2 }}</td>
+                <td>{{ curso.examenFinal }}</td>
+                <td>{{ curso.recuperacion || '-' }}</td>
+                <td class="final-score" [class.aprobado]="curso.notaTotal >= 61">
+                  {{ curso.notaTotal }} pts
+                </td>
+                <td>
+                  <div class="action-buttons-group">
+                    <button class="btn-action-edit" (click)="cargarParaEditar(curso)" title="Modificar">✏️</button>
+                    <button class="btn-action-delete" (click)="eliminarNotasCurso(curso.codigoCurso)" title="Limpiar Notas">🗑️</button>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="cursosEstudiante.length === 0">
+                <td colspan="8" class="empty-table">El estudiante no cuenta con materias asignadas en este ciclo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>

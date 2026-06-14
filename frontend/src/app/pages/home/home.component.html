@@ -1,0 +1,241 @@
+<div class="welcome-container">
+  <div class="home-navbar">
+   <div class="home-brand" (click)="setVista('inicio')">
+<img src="logo.png.png" alt="UniTrack Pro" style="height: 150px; display: block;">
+</div>
+
+    <div class="home-nav-buttons">
+      <button type="button" class="nav-pill" [class.active]="vistaActual === 'inicio'" (click)="setVista('inicio')">Inicio</button>
+      <button type="button" class="nav-pill" [class.active]="vistaActual === 'admisiones'" (click)="setVista('admisiones')">Admisiones</button>
+      <button type="button" class="nav-pill" [class.active]="vistaActual === 'facultades'" (click)="setVista('facultades')">Facultades</button>
+      <button type="button" class="nav-pill" [class.active]="vistaActual === 'ubicaciones'" (click)="setVista('ubicaciones')">Ubicaciones</button>
+    </div>
+  </div>
+
+  <main class="home-content" [ngSwitch]="vistaActual">
+    <section *ngSwitchCase="'inicio'">
+      <header class="welcome-header">
+        <h1 class="welcome-title">Bienvenido a <span class="highlight">{{ tituloSistema }}</span></h1>
+        <p class="welcome-subtitle">Selecciona tu perfil de usuario para ingresar a la plataforma de gestión universitaria.</p>
+      </header>
+
+      <div class="portal-selection-grid">
+  <div class="portal-card student-theme">
+    <div class="portal-card-header">
+      <div class="icono-contenedor">
+        <img src="https://img.icons8.com/?size=160&id=yDdZpF7a5jqE&format=png">
+      </div>
+      <h2>Portal Estudiantil</h2>
+    </div>
+    <p class="portal-card-body">
+      Accede para consultar tu pensum, verificar los semestres aprobados, asignarte a cursos activos y revisar tu historial analítico de notas.
+    </p>
+    <button class="btn-portal-access" routerLink="/portal-estudiante">
+      Ingresar como Alumno
+    </button>
+  
+</div>
+        <div class="portal-card professor-theme">
+          <div class="portal-card-header">
+        <img src="https://img.icons8.com/?size=160&id=TFa5dmzOAaDh&format=png">
+            <h2>Portal Catedrático</h2>
+          </div>
+          <p class="portal-card-body">
+            Área exclusiva para docentes. Herramientas de búsqueda por carné, ingreso del desglose de calificaciones por curso y edición de actas históricas.
+          </p>
+          <button class="btn-portal-access" routerLink="/portal-catedratico">
+            Ingresar como Docente
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section *ngSwitchCase="'admisiones'" class="info-panel">
+      <h2>Admisiones</h2>
+      <p>Bienvenido a la sección de Admisiones. Aquí puedes ver información de requisitos, fechas de convocatoria y pasos para postular.</p>
+      <ul>
+        <li>Requisitos académicos y documentación.</li>
+        <li>Fechas de evaluación y resultados.</li>
+        <li>Proceso de matrícula simplificado.</li>
+      </ul>
+    </section>
+
+    <section *ngSwitchCase="'facultades'" class="facultades-panel">
+      <div *ngIf="vistaFacultades === 'lista'">
+        <div class="section-header">
+          <h2>Facultades</h2>
+          <p>Selecciona una facultad para explorar sus carreras y conocer el pensum asociado.</p>
+        </div>
+
+        <div class="faculty-grid">
+          <article class="faculty-card" *ngFor="let facultad of facultades" (click)="seleccionarFacultad(facultad)" [style.--faculty-accent]="facultad.color">
+            <div class="faculty-card-image">
+              <img [src]="facultad.imagen" [alt]="facultad.nombre" />
+            </div>
+            <div class="faculty-card-body">
+              <span class="faculty-badge" [style.background]="facultad.color">{{ facultad.tag }}</span>
+              <h3>{{ facultad.nombre }}</h3>
+              <p>{{ facultad.carreras.length }} carreras disponibles</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div *ngIf="vistaFacultades === 'carreras'">
+        <button type="button" class="btn-back" (click)="volverAListaFacultades()">← Volver a Facultades</button>
+
+        <div class="section-header">
+          <h2>{{ facultadSeleccionada?.nombre }}</h2>
+          <p>Elige una carrera para ver el pensum de materias recomendado por la facultad.</p>
+        </div>
+
+        <div class="career-list">
+          <button type="button" class="career-card" *ngFor="let carrera of facultadSeleccionada?.carreras" (click)="seleccionarCarrera(carrera)" [style.--faculty-accent]="facultadSeleccionada?.color">
+            <div class="career-card-image">
+              <img [src]="carrera.imagen || facultadSeleccionada?.imagenCarrera || facultadSeleccionada?.imagen" [alt]="carrera.nombre" />
+              <span class="career-pill">{{ facultadSeleccionada?.tag }}</span>
+            </div>
+            <div class="career-card-body">
+              <div>
+                <h4>{{ carrera.nombre }}</h4>
+                <small>{{ totalCursos(carrera) }} asignaturas</small>
+              </div>
+              <span class="career-chevron">→</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="vistaFacultades === 'pensum' && carreraSeleccionada" class="pensum-dashboard-panel">
+        <button type="button" class="btn-back" (click)="volverACarreras()">← Volver a Carreras</button>
+
+        <section class="pensum-dashboard-header">
+          <div class="pensum-career-card">
+            <div class="pensum-career-image">
+              <img [src]="carreraSeleccionada.imagen || facultadSeleccionada?.imagenCarrera || facultadSeleccionada?.imagen" [alt]="carreraSeleccionada.nombre" />
+            </div>
+            <div class="pensum-career-info">
+              <span class="tag-pill">{{ facultadSeleccionada?.tag }}</span>
+              <h2>{{ carreraSeleccionada.nombre }}</h2>
+              <p>{{ facultadSeleccionada?.nombre }}</p>
+              <small>{{ totalCursos(carreraSeleccionada) }} asignaturas · {{ carreraSeleccionada.pensum.length }} semestres</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="pensum-specs">
+          <article class="spec-card">
+            <div class="spec-card-title">
+              <span class="spec-bullet"></span>
+              <div>
+                <h3>Perfil del Egresado</h3>
+                <p>Descripción de la formación que adquiere el egresado.</p>
+              </div>
+            </div>
+            <p class="spec-card-text">{{ carreraSeleccionada.perfilEgreso }}</p>
+          </article>
+
+          <article class="spec-card">
+            <div class="spec-card-title">
+              <span class="spec-bullet"></span>
+              <div>
+                <h3>Campo Laboral</h3>
+                <p>Áreas donde se desempeña el profesional.</p>
+              </div>
+            </div>
+            <ul class="spec-card-list">
+              <li *ngFor="let item of carreraSeleccionada.campoLaboral">{{ item }}</li>
+            </ul>
+          </article>
+
+          <article class="spec-card">
+            <div class="spec-card-title">
+              <span class="spec-bullet"></span>
+              <div>
+                <h3>Beneficios</h3>
+                <p>Motivos por los que esta carrera es atractiva.</p>
+              </div>
+            </div>
+            <ul class="spec-card-list">
+              <li *ngFor="let beneficio of carreraSeleccionada.beneficios">{{ beneficio }}</li>
+            </ul>
+          </article>
+        </section>
+
+        <div class="pensum-grid">
+          <article class="semestre-card" *ngFor="let semestre of carreraSeleccionada.pensum; trackBy: trackBySemestre">
+            <div class="semestre-sidebar">
+              <span class="semester-label">SEMESTRE {{ semestre.semestre }}</span>
+            </div>
+            <div class="semestre-body">
+              <div class="semestre-title">Semestre {{ semestre.semestre }}</div>
+              <ul class="course-list">
+                <li *ngFor="let curso of semestre.cursos; trackBy: trackByCursoCodigo">
+                  <strong>[{{ curso.codigo }}]</strong> {{ curso.nombre }}
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section *ngSwitchCase="'ubicaciones'" class="ubicaciones-panel">
+      <div class="ubicaciones-header">
+        <div>
+          <h2>Ubicaciones</h2>
+          <p>Selecciona un departamento para ver la sede, dirección y ubicación en el mapa.</p>
+        </div>
+      </div>
+
+      <div class="ubicaciones-actions">
+        <button
+          type="button"
+          class="ubicacion-pill"
+          *ngFor="let depto of departamentos"
+          (click)="seleccionarDepartamento(depto)"
+          [class.active]="departamentoSeleccionado === depto"
+        >
+          {{ depto }}
+        </button>
+      </div>
+
+      <div class="ubicaciones-content">
+        <div class="ubicaciones-info" *ngIf="!departamentoSeleccionado">
+          <div class="ubicaciones-empty">
+            <p>Selecciona un departamento para ver la sede.</p>
+          </div>
+        </div>
+
+        <div class="ubicaciones-info" *ngIf="departamentoSeleccionado">
+          <ng-container *ngFor="let ubicacion of ubicaciones | slice:0:5">
+            <div *ngIf="ubicacion.departamento === departamentoSeleccionado" class="ubicacion-card">
+              <h3>{{ ubicacion.nombreSede }}</h3>
+              <p class="ubicacion-meta"><strong>Departamento:</strong> {{ ubicacion.departamento }}</p>
+              <p class="ubicacion-meta"><strong>Dirección:</strong> {{ ubicacion.direccion }}</p>
+              <p class="ubicacion-meta"><strong>Coordenadas:</strong> {{ ubicacion.coordenadas }}</p>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="map-container">
+          <div class="map-overlay" *ngIf="ubicacionSeleccionada"></div>
+          <iframe
+            *ngIf="ubicacionSeleccionada"
+            [src]="mapUrl(ubicacionSeleccionada)"
+            title="Mapa de ubicación"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+          <div class="map-placeholder" *ngIf="!departamentoSeleccionado">
+            <p>El mapa se actualizará cuando selecciones un departamento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="welcome-footer" *ngIf="vistaActual === 'inicio'">
+    <p>© {{ cicloLectivo }} {{ tituloSistema }} · Sistema Integrado Escolar</p>
+  </footer>
+</div>

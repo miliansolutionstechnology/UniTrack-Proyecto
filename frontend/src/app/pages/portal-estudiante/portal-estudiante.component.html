@@ -1,0 +1,158 @@
+<div class="portal-container">
+  
+  <aside class="sidebar">
+    <div class="brand-section">
+      <div class="logo-placeholder"></div>
+     <img src="logo.png.png" alt="UniTrack Pro" style="height: 150px; display: block;">
+    </div>
+
+    <div class="user-info-side" *ngIf="perfil">
+    <img src="https://img.icons8.com/?size=160&id=yDdZpF7a5jqE&format=png">
+
+      <p class="user-name">{{ perfil.nombreCompleto }}</p>
+      <p class="user-role">{{ perfil.carrera }}</p>
+    </div>
+
+    <nav class="menu-nav">
+      <span class="menu-title">Ajustes</span>
+      <button (click)="cambiarSeccion('perfil')" [class.active]="seccionActiva === 'perfil'">
+        👤 Perfil del Alumno
+      </button>
+
+      <span class="menu-title">Secciones Académicas</span>
+      <button (click)="cambiarSeccion('dashboard')" [class.active]="seccionActiva === 'dashboard'">
+        🔮 Panel Principal
+      </button>
+      <button (click)="cambiarSeccion('asignacion')" [class.active]="seccionActiva === 'asignacion'">
+        ⚡ Asignación Express
+      </button>
+      <button (click)="cambiarSeccion('calificaciones')" [class.active]="seccionActiva === 'calificaciones'">
+        📈 Notas e Historial
+      </button>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    
+    <header class="content-header">
+      <h1>Dashboard Operativo</h1>
+      <div class="header-carne" *ngIf="perfil">ID: {{ perfil.carne }}</div>
+    </header>
+
+    <div *ngIf="mensajeAlerta" [className]="'alert-banner ' + tipoAlerta">
+      {{ mensajeAlerta }}
+    </div>
+
+    <section *ngIf="seccionActiva === 'dashboard'" class="dashboard-grid">
+      
+      <div class="card card-orange" (click)="cambiarSeccion('perfil')">
+        <div class="card-body">
+          <span class="card-icon">🪪</span>
+          <h3>Mi Expediente</h3>
+          <p>Consulta tus credenciales de Ingeniería, datos de contacto y estatus general del pensum.</p>
+        </div>
+        <div class="card-footer">Abrir Expediente ➔</div>
+      </div>
+
+      <div class="card card-blue" (click)="cambiarSeccion('asignacion')">
+        <div class="card-body">
+          <span class="card-icon">🚀</span>
+          <h3>Asignación de Cursos</h3>
+          <p>Inscribe nuevas asignaturas directamente en las estructuras del Árbol Binario de Búsqueda.</p>
+        </div>
+        <div class="card-footer">Ir a Inscripciones ➔</div>
+      </div>
+
+      <div class="card card-teal" (click)="cambiarSeccion('calificaciones')">
+        <div class="card-body">
+          <span class="card-icon">📊</span>
+          <h3>Rendimiento Académico</h3>
+          <p>Visualiza el desglose detallado de zonas, parciales, recuperaciones y créditos acumulados.</p>
+        </div>
+        <div class="card-footer">Ver Notas ➔</div>
+      </div>
+    </section>
+
+    <section *ngIf="seccionActiva === 'perfil'" class="view-section">
+      <div class="profile-card-detail" *ngIf="perfil">
+        <div class="profile-header">
+          <div class="avatar-box">
+            <span class="user-placeholder">👨‍💻</span>
+          </div>
+          <h2>{{ perfil.nombreCompleto }}</h2>
+          <span class="badge-carrera">Estatus: Alumno Regular</span>
+        </div>
+        
+        <div class="profile-info-grid">
+          <div class="info-item"><strong>Línea Base Académica</strong>{{ perfil.carrera }}</div>
+          <div class="info-item"><strong>Canal Institucional</strong>{{ perfil.correo }}</div>
+          <div class="info-item"><strong>Registro Único (ID)</strong>{{ perfil.carne }}</div>
+          <div class="info-item"><strong>Progreso del Ciclo</strong>Semestre {{ perfil.semestresAprobados + 1 }} en curso</div>
+        </div>
+      </div>
+    </section>
+
+    <section *ngIf="seccionActiva === 'asignacion'" class="view-section">
+      <div class="form-card">
+        <h2>Inscripción de Materias Express</h2>
+        <p style="color: #8f94a6; margin-bottom: 25px;">Registra de manera inmediata asignaturas agregando nodos clave al backend.</p>
+        
+        <div class="form-group">
+          <label>Código Identificador de Curso</label>
+          <input type="text" [(ngModel)]="nuevoCurso.codigoCurso" placeholder="Ej: C024">
+        </div>
+        
+        <div class="form-group">
+          <label>Nombre Oficial del Curso</label>
+          <input type="text" [(ngModel)]="nuevoCurso.nombreCurso" placeholder="Ej: Compiladores e Inteligencia Artificial">
+        </div>
+
+        <button class="btn-submit-asignar" (click)="ejecutarAsignacion()">Ejecutar Comando de Asignación</button>
+      </div>
+    </section>
+
+    <section *ngIf="seccionActiva === 'calificaciones'" class="view-section">
+      <div class="table-card">
+        <h2>Estatus Analítico de Cursos</h2>
+        <div class="table-responsive">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Asignatura</th>
+                <th>Zona (40)</th>
+                <th>Parcial I (20)</th>
+                <th>Parcial II (20)</th>
+                <th>Final (20)</th>
+                <th>Recupe.</th>
+                <th>Total (100)</th>
+                <th>Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let curso of cursosAsignados">
+                <td><span style="color: #00f2fe; font-weight: bold;">{{ curso.codigoCurso }}</span></td>
+                <td><strong>{{ curso.nombreCurso }}</strong></td>
+                <td>{{ curso.zona }} pts</td>
+                <td>{{ curso.parcial1 }} pts</td>
+                <td>{{ curso.parcial2 }} pts</td>
+                <td>{{ curso.examenFinal }} pts</td>
+                <td>{{ curso.recuperacion || '-' }}</td>
+                <td class="final-score" [class.aprobado]="curso.notaTotal >= 61">{{ curso.notaTotal }} pts</td>
+                <td>
+                  <span [className]="'status-badge ' + curso.estado.toLowerCase()">
+                    {{ curso.estado }}
+                  </span>
+                </td>
+              </tr>
+              <tr *ngIf="cursosAsignados.length === 0">
+                <td colspan="9" style="text-align: center; color: #8f94a6; padding: 30px;">No se registran transacciones de cursos activos en memoria.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>

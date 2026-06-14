@@ -1,1 +1,31 @@
-[]
+[
+  {
+    "carnet": "2027304",
+    "nombre": "Jose Estuardo Milian Garcia",
+    "correo": "jmmilian1998@gmail.com",
+    "carrera": "Administracipon de Sistemas Informaticos",
+    "historialInscripciones": {
+      "cabeza": {
+        "inscripcion": {
+          "codigoCurso": "001",
+          "nombreCurso": "Matématicas l",
+          "semestre": 1,
+          "nota": 100
+        },
+        "siguiente": null,
+        "anterior": null
+      },
+      "cola": {
+        "inscripcion": {
+          "codigoCurso": "001",
+          "nombreCurso": "Matématicas l",
+          "semestre": 1,
+          "nota": 100
+        },
+        "siguiente": null,
+        "anterior": null
+      },
+      "_tamaño": 1
+    }
+  }
+]

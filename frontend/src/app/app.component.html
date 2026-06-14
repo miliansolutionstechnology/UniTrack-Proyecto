@@ -1,92 +1,11 @@
 <header class="navbar">
-  <div class="logo">UniTrack - Universidad Regional</div>
-  <nav>
-    <a href="#inicio" class="nav-link active">INICIO</a>
-    <a href="#facultades" class="nav-link">FACULTADES</a>
-    <a href="#ubicaciones" class="nav-link">UBICACIONES</a>
-    <a href="#contactanos" class="nav-link">CONTACTANOS</a>
+  <div class="logo"></div>
+  <nav class="nav-actions">
+    <a routerLink="/" class="nav-link">Inicio</a>
+    <a *ngIf="!(authService.isAuthenticated$ | async)" routerLink="/registro" class="nav-link">Registro</a>
+    <button *ngIf="authService.isAuthenticated$ | async" class="logout-button" (click)="logout()">Cerrar Sesión</button>
   </nav>
 </header>
 
-<main class="dashboard-container">
-  
-  <section class="panel-estudiantes">
-    <h2>Gestión de Estudiantes (Lista Enlazada Simple)</h2>
-    
-    <div class="card-form">
-      <input type="text" placeholder="Carnet" #carnet />
-      <input type="text" placeholder="Nombre Completo" #nombre />
-      <input type="text" placeholder="Correo" #correo />
-      <input type="text" placeholder="Carrera" #carrera />
-      
-      <div class="actions-grid">
-        <button (click)="registrarAlFinal(carnet.value, nombre.value, correo.value, carrera.value)">Insertar al Final</button>
-        <button (click)="invertir()">Invertir Lista (In-Place)</button>
-      </div>
-    </div>
-
-    <div class="visualizador-nodos">
-      <h3>Estructura en Memoria Virtual</h3>
-      <div class="nodos-flow">
-        @if (estudiantesList.length === 0) {
-          <p class="empty-msg">La lista está vacía (Cabeza ➔ NULL)</p>
-        }
-        @for (est of estudiantesList; track est.carnet; let last = $last) {
-          <div class="nodo-simple" [class.selected]="estudianteSeleccionado?.carnet === est.carnet" (click)="seleccionarEstudiante(est)">
-            <div class="nodo-header">ID: {{ est.carnet }}</div>
-            <div class="nodo-body">{{ est.nombre }}</div>
-          </div>
-          @if (!last) {
-            <span class="flecha-enlace">➔</span>
-          }
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="panel-historial">
-    <h2>Historial Académico (Lista Doblemente Enlazada)</h2>
-    
-    @if (estudianteSeleccionado) {
-      <div class="card-detalle animate-fade">
-        <h3>Estudiante: {{ estudianteSeleccionado.nombre }}</h3>
-        <p><strong>Carrera:</strong> {{ estudianteSeleccionado.carrera }} | <strong>Correo:</strong> {{ estudianteSeleccionado.correo }}</p>
-        
-        <div class="sub-form">
-          <h4>Inscribir Curso en Historial</h4>
-          <input type="text" placeholder="Cód. Curso" #codCurso />
-          <input type="text" placeholder="Nombre Curso" #nomCurso />
-          <input type="number" placeholder="Semestre" #semestre />
-          <input type="number" placeholder="Nota" #nota />
-          <button (click)="agregarCurso(codCurso.value, nomCurso.value, semestre.value, nota.value)">Inscribir</button>
-          <button class="btn-secondary" (click)="ordenarHistorial()">Ordenar por Nota</button>
-        </div>
-
-        <div class="visualizador-nodos-dobles">
-          <div class="nodos-flow-doble">
-            @if (historialList.length === 0) {
-              <p class="empty-msg">Sin cursos inscritos en este historial.</p>
-            }
-            @for (ins of historialList; track ins.codigoCurso; let last = $last) {
-              <div class="nodo-doble">
-                <div class="nodo-header-doble">{{ ins.codigoCurso }}</div>
-                <div class="nodo-body-doble">
-                  <p class="curso-name">{{ ins.nombreCurso }}</p>
-                  <span class="badge-nota">Nota: {{ ins.nota }}</span>
-                </div>
-              </div>
-              @if (!last) {
-                <span class="flecha-enlace-doble">◀➔▶</span>
-              }
-            }
-          </div>
-        </div>
-      </div>
-    } @else {
-      <div class="select-prompt">
-        <p>💡 Selecciona un estudiante de la lista de la izquierda para desplegar su información e historial en este espacio.</p>
-      </div>
-    }
-  </section>
-
-</main>
+<router-outlet></router-outlet>
+<app-toast-container></app-toast-container>
