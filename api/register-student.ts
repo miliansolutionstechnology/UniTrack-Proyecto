@@ -8,9 +8,9 @@ export default async function handler(req: any, res: any) {
   const { profile, password } = req.body || {};
   if (!profile || !profile.correo) return res.status(400).json({ error: 'Missing profile or correo' });
 
-  const SUPABASE_URL = process.env.SUPABASE_URL;
-  const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  const RESEND_KEY = process.env.RESEND_API_KEY;
+  const SUPABASE_URL = process.env['SUPABASE_URL'];
+  const SERVICE_KEY = process.env['SUPABASE_SERVICE_ROLE_KEY'];
+  const RESEND_KEY = process.env['RESEND_API_KEY'];
   if (!SUPABASE_URL || !SERVICE_KEY) return res.status(500).json({ error: 'Supabase not configured' });
 
   try {
@@ -91,7 +91,7 @@ export default async function handler(req: any, res: any) {
 
     // 4) If ANON key present, request a session token for the new user (password grant)
     let session: any = null;
-    const ANON_KEY = process.env.SUPABASE_ANON_KEY;
+    const ANON_KEY = process.env['SUPABASE_ANON_KEY'];
     if (ANON_KEY && password) {
       try {
         const params = new URLSearchParams();

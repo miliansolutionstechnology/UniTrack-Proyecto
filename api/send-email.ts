@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
   const { to, name } = req.body;
   if (!to) return res.status(400).json({ error: 'Missing `to` address' });
 
-  const API_KEY = process.env.RESEND_API_KEY;
+  const API_KEY = process.env['RESEND_API_KEY'];
   if (!API_KEY) return res.status(500).json({ error: 'Missing RESEND_API_KEY' });
 
   try {
